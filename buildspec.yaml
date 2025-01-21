@@ -3,10 +3,16 @@ version: 0.2
 phases:
   install:
     commands:
+      - echo "Checking OS type..."
+      - uname -a  # Print system details
       - echo "Installing dependencies..."
-      - yum update -y
-      - amazon-linux-extras enable docker
-      - yum install -y docker
+      
+      # Use apt-get if the environment is Ubuntu-based
+      - if [ -x "$(command -v apt-get)" ]; then apt-get update -y && apt-get install -y docker.io; fi
+      
+      # Use yum if the environment is Amazon Linux-based
+      - if [ -x "$(command -v yum)" ]; then yum update -y && yum install -y docker; fi
+
       - service docker start
 
   pre_build:
@@ -24,4 +30,4 @@ phases:
     commands:
       - echo "Pushing Docker image..."
       - docker push 755694651723.dkr.ecr.us-west-2.amazonaws.com/project-app-container
-      - echo "Build completed successfully"
+      - echo "Build completed successfully!"
