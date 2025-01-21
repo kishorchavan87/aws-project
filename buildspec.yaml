@@ -24,11 +24,11 @@ phases:
   build:
     commands:
       - echo "Building Docker image..."
-      - docker build -t project-app-container .
-      - docker tag project-app-container:latest 755694651723.dkr.ecr.us-west-2.amazonaws.com/project-app-container:latest
+      - docker build -t projectecr .
+      - docker tag projectecr:latest 755694651723.dkr.ecr.us-west-2.amazonaws.com/projectecr:latest
 
   post_build:
     commands:
       - echo "Pushing Docker image..."
-      - docker push 755694651723.dkr.ecr.us-west-2.amazonaws.com/project-app-container
+      - docker push 755694651723.dkr.ecr.us-west-2.amazonaws.com/projectecr:latest
       - echo "Build completed successfully!"
