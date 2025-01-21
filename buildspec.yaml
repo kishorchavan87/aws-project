@@ -7,13 +7,14 @@ phases:
       - uname -a  # Print system details
       - echo "Installing dependencies..."
       
-      # Use apt-get if the environment is Ubuntu-based
-      - if [ -x "$(command -v apt-get)" ]; then apt-get update -y && apt-get install -y docker.io; fi
-      
-      # Use yum if the environment is Amazon Linux-based
+      # Amazon Linux
       - if [ -x "$(command -v yum)" ]; then yum update -y && yum install -y docker; fi
+      
+      # Ubuntu/Debian-based
+      - if [ -x "$(command -v apt-get)" ]; then apt-get update -y && apt-get install -y docker.io; fi
 
-      - service docker start
+      # Start Docker service (if running on Amazon Linux)
+      - dockerd --daemon &
 
   pre_build:
     commands:
