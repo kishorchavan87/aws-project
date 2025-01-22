@@ -34,7 +34,7 @@ phases:
       - docker push 755694651723.dkr.ecr.us-west-2.amazonaws.com/project-app-container:latest
       - echo "Build completed successfully!"
 
-  artifacts:
+artifacts:
   files:
     - '**/*'
   name: myartifacts.zip
