@@ -24,8 +24,8 @@ phases:
   build:
     commands:
       - echo "Building Docker image..."
-      - docker pull nginx 
-      - docker tag nginx project-app-container 
+      - docker pull nginx
+      - docker tag nginx project-app-container
       - docker tag project-app-container:latest 755694651723.dkr.ecr.us-west-2.amazonaws.com/project-app-container:latest
 
   post_build:
