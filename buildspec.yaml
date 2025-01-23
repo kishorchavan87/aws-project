@@ -37,6 +37,4 @@ phases:
 artifacts:
   files:
     - '**/*'
-  name: myartifacts.zip
-  discard-paths: no
-  base-directory: output/
+ 
